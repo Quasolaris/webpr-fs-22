@@ -1,0 +1,28 @@
+function keyword
+--------------------------------
+
+keyword: function
+
+function name(parameters) { 
+					statements;
+				  	return stuff;
+				}
+
+calling function: name(arguments);
+
+When the function has no parameters the given argument gets ignored
+
+There is NO function overloading in JS! It takes the last function declared.
+
+No return statememnt means NO return in JS
+const func = () => 1; // automaticaly adds return statements
+
+const name = () => {statements;} // Lambda
+=> is a replacememnt of function keyword
+(input) => (function) // returns function, therefore can be given a name 
+
+functions can be in an array:
+const funs = [null, fun1, fun2];
+funs[2]() // is fun2()
+
+
