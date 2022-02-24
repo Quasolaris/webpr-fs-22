@@ -5,7 +5,7 @@ const south = {dx:  0, dy:  1};
 const west  = {dx: -1, dy:  0};
 
 let direction = north;
-
+const defaultDirection = north;
 const clockwise = [north, east, south, west, north];
 const countercw = [north, west, south, east, north];
 
@@ -17,6 +17,9 @@ let snake = [
 ];
 let food = {x: 15, y: 15};
 
+let score = 0;
+
+let textUpRight = canvas.getContext("2d");
 
 function snakeEquals(a, b) { 
     return a.x === b.x && a.y === b.y;
@@ -33,10 +36,18 @@ function start() {
 
     const rightArrow = 39;
     const leftArrow  = 37;
+    const downArrow = 40;
+    const upArrow = 38;
     window.onkeydown = evt => {
-        const orientation = (evt.keyCode === rightArrow) ? clockwise : countercw;
-        changeDirection(orientation);
+        const code = evt.keyCode;
+        if(code === rightArrow) {direction = east;}
+        else if (code == leftArrow) {direction = west;}
+        else if (code == downArrow) {direction = south;}
+        else {direction = defaultDirection;}
     };
+
+
+
 
     setInterval(() => {
         nextBoard();
@@ -63,6 +74,7 @@ function nextBoard() {
     if (snakeEquals(food, head)) {  // have we found any food?
         food.x = Math.floor(Math.random() * 20);   // place new food at random location
         food.y = Math.floor(Math.random() * 20);
+        score++;
     } else {
         snake.pop(); // no food found => no growth despite new head => remove last element
     }
@@ -84,10 +96,19 @@ function display(context) {
     // draw food
     context.fillStyle = "red";
     fillBox(context, food);
+    
+    // draw score
+    drawScore();
+    
 }
 
 function fillBox(context, element) {
     context.fillRect(element.x * 20 + 1, element.y * 20 + 1, 18, 18);
 }
 
+function drawScore() {
+    textUpRight.font = "16px Arial";
+    textUpRight.fillStyle = "#0095DD";
+    textUpRight.fillText("Score: " + score, 8, 20);
+}
 

@@ -1,3 +1,5 @@
+612
+
 function keyword
 --------------------------------
 
@@ -25,4 +27,41 @@ functions can be in an array:
 const funs = [null, fun1, fun2];
 funs[2]() // is fun2()
 
+passing function to function --> higher order function
 
+
+        function doit(whatToDo) {
+            return function bla(arg) { return whatToDo(arg); }
+        }
+
+        is same as:
+
+        const doit2 = callme => arg => callme(arg) ;
+        
+     	the curryied style:
+     	passing arguments step by step
+     	const example = doit2(fun1)(10);
+
+--------------------------------
+named functions
+--------------------------------
+
+
+
+
+--------------------------------
+function references
+--------------------------------
+
+
+
+
+--------------------------------
+calling functions
+--------------------------------
+
+
+
+--------------------------------
+too many, too few argumentswhen to return, missing returnsstatements vs. expressions
+--------------------------------
