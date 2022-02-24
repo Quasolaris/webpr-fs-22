@@ -19,8 +19,6 @@ let food = {x: 15, y: 15};
 
 let score = 0;
 
-let textUpRight = canvas.getContext("2d");
-
 function snakeEquals(a, b) { 
     return a.x === b.x && a.y === b.y;
 }
@@ -98,7 +96,8 @@ function display(context) {
     fillBox(context, food);
     
     // draw score
-    drawScore();
+    let textUpRight = canvas.getContext("2d");
+    drawScore(textUpRight);
     
 }
 
@@ -106,7 +105,7 @@ function fillBox(context, element) {
     context.fillRect(element.x * 20 + 1, element.y * 20 + 1, 18, 18);
 }
 
-function drawScore() {
+function drawScore(textUpRight) {
     textUpRight.font = "16px Arial";
     textUpRight.fillStyle = "#0095DD";
     textUpRight.fillText("Score: " + score, 8, 20);
