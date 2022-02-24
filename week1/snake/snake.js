@@ -18,6 +18,7 @@ let snake = [
 let food = {x: 15, y: 15};
 
 let score = 0;
+let moves = 0;
 
 function snakeEquals(a, b) { 
     return a.x === b.x && a.y === b.y;
@@ -42,6 +43,7 @@ function start() {
         else if (code == leftArrow) {direction = west;}
         else if (code == downArrow) {direction = south;}
         else {direction = defaultDirection;}
+        moves++;
     };
 
 
@@ -97,7 +99,7 @@ function display(context) {
     
     // draw score
     let textUpRight = canvas.getContext("2d");
-    drawScore(textUpRight);
+    drawStats(textUpRight);
     
 }
 
@@ -105,9 +107,9 @@ function fillBox(context, element) {
     context.fillRect(element.x * 20 + 1, element.y * 20 + 1, 18, 18);
 }
 
-function drawScore(textUpRight) {
+function drawStats(textUpRight) {
     textUpRight.font = "16px Arial";
     textUpRight.fillStyle = "#0095DD";
-    textUpRight.fillText("Score: " + score, 8, 20);
+    textUpRight.fillText("Score: " + score + "   |   Moves: " + moves, 8, 20);
 }
 
