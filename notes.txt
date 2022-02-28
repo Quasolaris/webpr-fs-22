@@ -1,5 +1,8 @@
 612
 
+http://86.119.43.169:9090
+
+
 function keyword
 --------------------------------
 
@@ -43,25 +46,31 @@ passing function to function --> higher order function
      	const example = doit2(fun1)(10);
 
 --------------------------------
-named functions
+Console
 --------------------------------
 
 
-
-
---------------------------------
-function references
---------------------------------
-
-
-
+console.dir(); //gives more information
+console.table([{x:1, y:2}, {x:2, y:4}]); // table overview
 
 --------------------------------
-calling functions
+Lambda
 --------------------------------
 
 
 
 --------------------------------
-too many, too few argumentswhen to return, missing returnsstatements vs. expressions
+
+--------------------------------
+
+
+
+--------------------------------
+
+--------------------------------
+
+
+
+--------------------------------
+
 --------------------------------
