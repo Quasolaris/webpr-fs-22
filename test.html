@@ -11,20 +11,101 @@
 
             <script>
 
-            const id  = y => y;
-            const fst = x => y => x;
-            const snd = fst(id);
+                const Left    = x => f => g => f (x);
+                const Right   = x => f => g => g (x);
+                const either  = e => f => g => e (f) (g);
+                const id      = x => x;
+
+
+
+                const x_ = Math.random();
+
+                const safeDiv = num => divisor =>
+                    divisor === 0
+                        ? Left ("Cannot divide by 0")
+                        : Right (num/divisor)
+
+                // ============== Lösung
+                const eShow = x =>
+                        either (x) 
+                            ( x => ("Cannot divide by 0"))
+                            ( x => "Result is: " + x)
+
+                // ==============
+                document.writeln((eShow( safeDiv(1)(0)) === "Cannot divide by 0") + '<br>');
+                document.writeln((eShow( safeDiv(x_)(1)) === ("Result is: " + x_)) + '<br>');
+
+
+                /*
+                const s1 = x => y => z => x;
+                const s2 = x => y => z => y;
+                const s3 = x => y => z => z;
+
+                const triple = x => y => z => f => f(x)(y)(z);
+                const a = t => t(s1);
+                const b = t => t(s2);
+                const c = t => t(s3);
+
+                const person = triple;
+                const firstname = a;
+                const lastname = b;
+                const age = c;
+
+                const bran = person("Brenda");
+                const raven = bran("Stark")(16);
+                const eich = bran("Eich")(50);
+
+                document.writeln(age(raven)===16);
+
+
+                const id = x => x;
+                const Left   = x => f => g => f(x);
+                const Right  = x => f => g => g(x);
+                const either = id;
+
+                const safeDiv = num => divisor =>
+                    divisor === 0
+                    ? Left("schlecht!")
+                    : Right(num / divisor);
+
+                const result = safeDiv(1)(1);
+
+                either( result  )
+                    ( msg => document.writeln(msg))
+                    (val => document.write(val ===1));
+
+                    
+                const id = x => x;
+                const konst = x => y => x;
+                const T = konst;
+                const F = x => y => y;
+
+                //const M = f => f(f);
+                //const yCombinator = M(M);
+
+                const and = p => q => p (q) (p);
+                const or  = p => q => p (p) (q);
+                const not = p => p(F)(T);
+                const xor = p => q => p(not (q)) (q)
+
+                const pair = a => b => f => f(a)(b);
+                const fst = p => p(T);
+                const snd = p => p(F);
+                // TRUE FALSE
+                
             
-            document.writeln(snd(2)(3));
 
-            const x_ = Math.random();
-            const y_ = Math.random();
-            document.writeln(snd(x_)(y_) === y_);
+                const pairEq = a => b => fst(a) === fst(b) && snd(a) == snd(b);
 
-
-
-            
-
+                const pairMap = f => p => pair (f(fst(p))) (f(snd(p)));
+                
+                const pairPlus = a => b => pair (fst(a) + fst(b)) (snd(a) + snd(b));
+                const oneTwo = pair (1)(2);
+                const square = x => x * x;
+                const sum = pairPlus(oneTwo)(oneTwo);
+                const result = pairMap(square) (oneTwo);
+                document.writeln(pairEq(sum)(pair(2)(4)));
+                */
             </script>
 
     </body>

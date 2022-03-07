@@ -37,10 +37,7 @@ ok.push( not(F) === T);
 ok.push( not(T) === F);
 
 // // xor
-ok.push( xor(F)(F) === F );
-ok.push( xor(T)(F) === T );
-ok.push( xor(F)(T) === T );
-ok.push( xor(T)(T) === F );
+
 
 // flip
 //flip(f)(x)(y) = f(y)(x)
@@ -50,14 +47,14 @@ ok.push( xor(T)(T) === F );
 //
 // // Pair
 
-//const dierk = Pair("Dierk")("König"); // immutable
-//ok.push( dierk(firstname) === "Dierk");
-//ok.push( dierk(lastname)  === "König");
+const dierk = Pair("Dierk")("König"); // immutable
+ok.push( dierk(firstname) === "Dierk");
+ok.push( dierk(lastname)  === "König");
 //
-// const tdierk = Triple("Dierk")("König")(50); // immutable
-// ok.push( tdierk(tfirstname) === "Dierk");
-// ok.push( tdierk(tlastname)  === "König");
-// ok.push( tdierk(tage)       === 50);
+const tdierk = Triple("Dierk")("König")(50); // immutable
+ok.push( tdierk(tfirstname) === "Dierk");
+ok.push( tdierk(tlastname)  === "König");
+ok.push( tdierk(tage)       === 50);
 //
 // // tuple
 // const [Person, fn, ln, ag] = Tuple(3);
@@ -82,9 +79,9 @@ const safeDiv = num => divisor =>
     ? Left("schlecht!")
     : Right(num / divisor);
 
-//either( safeDiv(1)(0)  )
-//      ( x => console.error(x))
-//      ( x => console.log(x));
+either( safeDiv(1)(0)  )
+     ( x => console.error(x))
+     ( x => console.log(x));
 
 //
 // const [Cash, CreditCard, Invoice, PayPal, pay] = Choice(4);

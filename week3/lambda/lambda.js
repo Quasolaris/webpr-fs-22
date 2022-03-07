@@ -1,19 +1,31 @@
 const id = x => x;
 const konst = x => y => x;
 const snd = x => y => y;
+//const M = f => f(f);
+//const yCombinator = M(M);
 
 // TRUE FALSE
 const T = konst;
 const F = snd;
 
 const and = p => q => p (q) (p);
-const or = p => q => p (p) (q);
+const or  = p => q => p (p) (q);
 const not = p => p(F)(T);
 const xor = p => q => p(not (q)) (q)
 
-const Pair = x => y => (x,y);
+// datastructures
+const Pair = x => y => f => f(x)(y);
+const firstname = konst;
+const lastname = snd;
 
+const Left   = x => f => g => f(x);
+const Right  = x => f => g => g(x);
+const either = id;
 
+const Triple = x => y => z => Pair(Pair(x) (y)) (z);
+const tfirstname = konst (konst);
+const tlastname = konst (snd);
+const tage = snd;
 // ----- special -----
 
 const Tuple = n => [
