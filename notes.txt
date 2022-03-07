@@ -1,5 +1,5 @@
 612
-
+19-487-172
 http://86.119.43.169:9090
 
 
@@ -54,16 +54,56 @@ console.dir(); //gives more information
 console.table([{x:1, y:2}, {x:2, y:4}]); // table overview
 
 --------------------------------
+Scopes
+--------------------------------
+
+global scope:
+window (browser)
+
+function scope:
+variables are local to enclosing function
+
+
+x = ... // mutable, global scope --> DO NOT USE THIS!
+var x = ... // mutable "hoisted" scope --> DO NOT USE
+let x = ... // mutable, local scope
+const x = ... // immutabe, local scope
+
+general, in scope after first use!
+
+var x = ... puts x not where you expect, it is hoisted, means it gets defined at the beginning of your script. Even when code is never reached, the var is defined, dnagerous!
+
+use let x = ... and const x = ...
+
+even if you want to chnage the x later on, start with const x = ...
+the value can change, ex. array elements can still be changed
+you do const x = 3; and then let x = 5; therefore oyu can change it afterwards
+
+Structure and Interpretation of Computer Programs (Book)
+
+--------------------------------
+Immediately Invoked Function Expression [IIFE]
+--------------------------------
+
+function foo() {...}; foo();
+In the end lamba was born, that can be immediately invoked:
+(() => {...})();
+
+--------------------------------
 Lambda
 --------------------------------
 
+Everything that can be calulated with calulus, can be calulated with Lambda
 
+Three Operations possible:
+- Rename parameter (alpha)
+- Apply argument (beta)
+- Cancle paramter (eta)
 
---------------------------------
-
---------------------------------
-
-
+eta reduktion:
+x => y => plus(x)(y)
+x => plus(x)
+plus
 
 --------------------------------
 
