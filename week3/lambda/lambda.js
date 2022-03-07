@@ -1,4 +1,17 @@
+const id = x => x;
+const konst = x => y => x;
+const snd = x => y => y;
 
+// TRUE FALSE
+const T = konst;
+const F = snd;
+
+const and = p => q => p (q) (p);
+const or = p => q => p (p) (q);
+const not = p => p(F)(T);
+const xor = p => q => p(not (q)) (q)
+
+const Pair = x => y => (x,y);
 
 
 // ----- special -----

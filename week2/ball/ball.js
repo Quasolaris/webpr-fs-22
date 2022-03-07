@@ -24,7 +24,24 @@ function nextBoard() {
     // calculate new position
     // calculate any changes in velocity due to gravitational pull or medium resistance
 
+    old.x = ball.x;
+    old.y = ball.y;
 
+    if(ball.y >= 390 && ball.dy > 0) {
+        ball.dy -= 4;
+        ball.dy *= 1;
+    }
+
+
+    if(ball.y <= 10 && ball.dy < 0 || ball.x >= 390 && ball.dx > 0) {
+        ball.dx -= 4;
+        ball.dx *= 1;
+    }
+
+    ball.x += ball.dx;
+    ball.y = ball.dy;
+    ball.y = Math.min(390, ball.y);
+    ball.dy += 1.5 ;
 }
 
 function display(context) {
