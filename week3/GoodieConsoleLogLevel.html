@@ -18,15 +18,15 @@
     };
 
     // starting state
-    const logAll = () => {
-        console.error("error", longRunning("error"));
-        console.warn ("warn",  longRunning("warn") );
-        console.info ("info",  longRunning("info") );
-        console.log  ("log",   longRunning("log")  );
-        console.debug("debug", longRunning("debug"));
-    }
+    // const logAll = () => {
+    //     console.error("error", longRunning("error"));
+    //     console.warn ("warn",  longRunning("warn") );
+    //     console.info ("info",  longRunning("info") );
+    //     console.log  ("log",   longRunning("log")  );
+    //     console.debug("debug", longRunning("debug"));
+    // }
 
-    /* constants
+    /* constants */
     const LEVEL_NONE    = -1;
     const LEVEL_ERROR   =  0;
     const LEVEL_WARN    =  1;
@@ -34,7 +34,6 @@
     const LEVEL_LOG     =  3;
     const LEVEL_DEBUG   =  4;
     let logLevel = LEVEL_LOG;
-    */
 
     // strict version (not working as desired, yet)
     const error = argF => { if (logLevel >= LEVEL_ERROR) console.error(argF); }
