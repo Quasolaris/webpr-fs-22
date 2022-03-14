@@ -9,12 +9,12 @@
 // Reading user input with arrow keys (here for orientation)
 // List of key codes is at the EOF
 
-const north = {dx:  0, dy: -1};
-const east  = {dx:  1, dy:  0};
-const south = {dx:  0, dy:  1};
-const west  = {dx: -1, dy:  0};
+const up = {dx:  0, dy: -1};
+const right  = {dx:  1, dy:  0};
+const down = {dx:  0, dy:  1};
+const left  = {dx: -1, dy:  0};
 
-let direction = north;
+let direction = up;
 
 const rightArrow = 39;
 const leftArrow  = 37;
@@ -22,9 +22,9 @@ const downArrow = 40;
 const upArrow = 38;
 window.onkeydown = evt => {
     const code = evt.keyCode;
-    if(code === rightArrow) {direction = east;}
-    else if (code == leftArrow) {direction = west;}
-    else if (code == downArrow) {direction = south;}
+    if(code === rightArrow) {direction = right;}
+    else if (code == leftArrow) {direction = left;}
+    else if (code == downArrow) {direction = down;}
     else {direction = defaultDirection;}
     moves++;
 };

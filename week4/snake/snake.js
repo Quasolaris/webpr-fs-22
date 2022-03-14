@@ -1,4 +1,24 @@
 // requires ../lambda/lambda.js
+const id    = x => x;
+const konst = x => y => x; // Kestrel, K
+const fst   = konst;       // just an alias
+const snd   = x => y => y; // Kite,    KI
+
+// const T     = x => y => x;
+// const F     = x => y => y;
+const T     = konst;
+const F     = snd;
+
+const and   = p => q => p ( q ) ( p ) ;
+const or    = p => q => p ( p ) ( q );
+
+const Pair      = x => y => f => f (x) (y); // Vireo, V
+const firstname = fst;
+const lastname  = snd;
+
+const Left   = x => f => g => f(x);
+const Right  = x => f => g => g(x);
+const either = e => bad => good => e (bad) (good);
 
 const MAX = 20;
 
@@ -20,14 +40,16 @@ let snake = [
 ];
 let food = Pair(15)(15);
 
+
+
 // function snakeEquals(a, b) { return a.x === b.x && a.y === b.y }
-const pairEq = a => b =>  undefined; // todo: your code here
+const pairEq = a => b => a(fst) === b(fst) && a(snd) === b(snd); // todo: your code here
 
 // Pair + Pair = Pair        // Monoid
-const pairPlus = a => b =>  undefined; // todo: your code here
+const pairPlus = a => b =>  Pair (a(fst) + b(fst)) (a(snd) + b(snd)); // todo: your code here
 
 // Function and Pair = Pair  // Functor
-const pairMap = f => p =>  undefined; // todo: your code here
+const pairMap = f => p =>  Pair (f(p(fst))) (f(p(snd))); // todo: your code here
 
 
 function changeDirection(orientation) {
