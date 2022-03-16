@@ -11,12 +11,16 @@
 
             <script>
 
-                const join = a => (accu, cur) => accu + a + cur; 
 
+                // yes it will be because I do understand Lambdas not enough, BUT JAVASCRIPT PLEASE AT LEAST GIVE ERROR MESSAGES THAT ACTUALLY HELP
+                // I want my C back...
+                const preOrder = (input, output) => output = input.reverse();
+                const test = [1,2,3].reduce(preOrder, []);
+                console.log(test)
 
-
-                document.writeln([1,2,3].reduce(join('-')) === '1-2-3');
-                document.writeln([1,2,3].reduce(join('+')) === '1+2+3');
+                document.writeln([1,2,3].reduce(preOrder, [])); 
+                document.writeln([1,2,3].reduce(preOrder, []) === [3,2,1]);
+                document.writeln([1,2,3,4,5].reduce(preOrder, []) === [5,4,3,2,1]);
 
 
    
