@@ -14,7 +14,9 @@ const right  = {dx:  1, dy:  0};
 const down = {dx:  0, dy:  1};
 const left  = {dx: -1, dy:  0};
 
-let direction = up;
+let defaultDirection = up;
+let direction = defaultDirection;
+
 
 const rightArrow = 39;
 const leftArrow  = 37;
