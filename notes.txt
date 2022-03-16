@@ -123,21 +123,81 @@ Higher Order Functions
 Utiliti function in toolbox, to find if id is in document or not
 
 --------------------------------
-
+JS-Doc
 --------------------------------
 
+Mittels JavaDoc kann man darauf hinweisen welcher Typ die Variable aben soll. 
+Ist aber OPTIONAL, becuase fuck types am I right? (I want my C back...)
 
+/**
+*
+* @type { String }
+*/
+const a = "hello";
+console.log(a);
+a = 0; / <--- hier wird warnung augegeben wegen Int zu String
+
+
+Parameter x ist OK mit String und Number aber nur Strign welche "Hello" ist
+
+/**
+* Doc eintrag für foo()
+* 
+* @param { String | Number | "Hello" } x - Doc eintrag für x
+*/
+const foo = x => console.log(x);
+foo("hi");
+foo(0);
+foo(true); // <-- Warung hier
+foo("hallo"); // <-- Warung da nicht "Hello"
 
 --------------------------------
-
+Higher Order Function
 --------------------------------
+===map
+const times = a => b => a*b;
+const twoTimes = times(2);
 
+[1, 2, 3].map(x => times(2)(x)); // Beta reduction führt zu times(2)
+[1, 2, 3].map(times(2)); // times(2) ist twoTimes
+[1, 2, 3].map(twoTimes);
 
+Map gibt immer gleichen typ zurück welcher als input genutzt wurde
+Inner Type kann wechseln (z.B. int to string), äusserer bleibt gleich, array bleibt array
 
---------------------------------
+===filter
+function we apply need to be a boolean, where true, his value will get chosen --> filtered
+here number of entrie change
 
---------------------------------
+const odd = x => x % 1 === 1;
+[1, 2, 3].filter(x = x % 2 === 1);
+[1, 2, 3].filter(x => odd(x));
+[1, 2, 3].filter(odd);
 
+===reduce
+reduce((acc, cur) => acc + cur); 
+[1,2,3] -> [3,3] ->  [3]
+
+result of reduce is always inner type
+
+const plus = (accu, cur) => accu + cur;
+[1, 2, 3].reduce((accu, cur) => accu + cur);
+[1, 2, 3].reduce(plus);
+[1, 2, 3].reduce(plus, 0); // here you give a start element, so you do strart with a 0 and 1, not 1 and 2 (good practice), good when array is empty
+
+===Monoid
+pair + pair == pair
+n + _ = n;
+_ + n = n;
+
+example:
+"x" + "y" = "xy"; // is a monoid because result is a String, so string concat is a monoid (assiozativ)
+
+usefull to limit operations needed, example:
+1+2+3+4+5 --> because monoid we can do (1+2)+(3+4)+5, makes it easier and more efficient
+
+===functor
+map (f) (pair) == pair;
 
 
 --------------------------------

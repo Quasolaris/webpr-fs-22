@@ -11,32 +11,19 @@
 
             <script>
 
-                const Left    = x => f => g => f (x);
-                const Right   = x => f => g => g (x);
-                const either  = e => f => g => e (f) (g);
-                const id      = x => x;
+                const join = a => (accu, cur) => accu + a + cur; 
 
 
 
-                const x_ = Math.random();
-
-                const safeDiv = num => divisor =>
-                    divisor === 0
-                        ? Left ("Cannot divide by 0")
-                        : Right (num/divisor)
-
-                // ============== Lösung
-                const eShow = x =>
-                        either (x) 
-                            ( x => ("Cannot divide by 0"))
-                            ( x => "Result is: " + x)
-
-                // ==============
-                document.writeln((eShow( safeDiv(1)(0)) === "Cannot divide by 0") + '<br>');
-                document.writeln((eShow( safeDiv(x_)(1)) === ("Result is: " + x_)) + '<br>');
+                document.writeln([1,2,3].reduce(join('-')) === '1-2-3');
+                document.writeln([1,2,3].reduce(join('+')) === '1+2+3');
 
 
+   
                 /*
+
+                
+
                 const s1 = x => y => z => x;
                 const s2 = x => y => z => y;
                 const s3 = x => y => z => z;
