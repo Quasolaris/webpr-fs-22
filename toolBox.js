@@ -85,7 +85,17 @@ if ( ok.every( elem => elem) ) {
     }
 }
 //-------------------------------------------
-
+// Code that writes itself
+const name = [
+    "function", 
+    "lambda",   
+    "snake"
+].forEach(name => { document.writeln(`<script src="${name}/${name}.js"><\/script>`);
+                    document.writeln(document.writeln(`<script src="${name}/${name}Test.js"><\/script>`));
+                });
+                
+                
+document.writeln('<script>alert("What a joke");<\/script>');    
 
 //-------------------------------------------
 

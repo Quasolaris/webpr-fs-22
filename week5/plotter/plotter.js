@@ -9,6 +9,8 @@ function start() {
     const canvas       = document.getElementById('canvas');
 
     // todo: how to display?
+    display(canvas, Function('x', `return ${userFunction.value}`));
+
 
 }
 
