@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    
+    <body>
+
+        <h1>Quiz Test File</h1>
+        <p>JavaScript starts here:</p>
+
+            <script>
+
+        
+                const input = document.createElement("input");
+                input.setAttribute("type", "text");
+                document.body.appendChild(input);
+                window.onkeydown = evt => {
+                    const code = evt.keyCode;
+                    if(code == 13) {
+                        const output = document.body.getElementsByName("input");
+                        document.writeln(output);
+                    }
+                };
+                
+            </script>
+
+    </body>
+<html>
