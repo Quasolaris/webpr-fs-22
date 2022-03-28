@@ -7,6 +7,7 @@ const maxY =  1;
 function start() {
     const userFunction = document.getElementById('user_function');
     const canvas       = document.getElementById('canvas');
+    const userScale       = document.getElementById('user_scale');
 
     const makeF = () => Function("x", "return " + userFunction.value + ";");
 
