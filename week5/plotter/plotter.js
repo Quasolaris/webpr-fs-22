@@ -8,8 +8,11 @@ function start() {
     const userFunction = document.getElementById('user_function');
     const canvas       = document.getElementById('canvas');
 
-    // todo: how to display?
-    display(canvas, Function('x', `return ${userFunction.value}`));
+
+    const makeF = () => Function('x', `return ${userFunction.value};`);
+    userFunction.onchnage = _ => display(canvas, makeF());
+    
+    display(canvas, makeF());
 
 
 }
@@ -27,7 +30,7 @@ function display(canvas, f) {
     context.beginPath();
     context.moveTo(normx(minX), normy(f(minX)));
 
-    const stride = (maxX - minX) / 100; // 100 Stützstellen
+    const stride = (maxX - minX) / 300; // 100 Stützstellen
     for (let x = minX; x <= maxX; x += stride) {
         context.lineTo(normx(x), normy(f(x)));
         context.stroke();

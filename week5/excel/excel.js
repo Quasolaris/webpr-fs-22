@@ -24,7 +24,7 @@ function fillTable(container) {
             input.setAttribute("ID", cellid);
 
             // todo: what to do on input change or onClick?
-
+            
             td.appendChild(input);
             tr.appendChild(td);
         });

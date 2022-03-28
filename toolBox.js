@@ -98,7 +98,8 @@ const name = [
 document.writeln('<script>alert("What a joke");<\/script>');    
 
 //-------------------------------------------
-
+// Create function with goven arguments
+Function('x', `return ${userFunction.value}`)
 
 //-------------------------------------------
 
