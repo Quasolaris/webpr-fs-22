@@ -215,18 +215,68 @@ function()
 like eval but parameters get declared and executes in globel scope
 and creates a reference
 
+--------------------------------
+Objects:
+const good = {
+    firstname: "Good",
+    lastname: "Boy",
+    getName : function() {
+        return this.firstname + " "+ this.lastname
+    }
+};
 
+Closed explicit class, closed sope so no "this"
 
+funtion Person(firts, last) {
+    let firstname: first;
+    let lastname : last;
+    return {
+        getName: function() {
+            return firstname + " " + lasname 
+            }
+        }
+    }
+}
+--------------------------------
+Mixed but classifed class
 
+const Person = ( () => {
+    function Person(first, last) {
+        this.firstname = first;
+        this.lastname = last;
+    }
+    Person.prototype.getName = function() {
+        return this.firstname + " " + this.lastname;
+    };
+    return Person;
+}) (); // IIFE
+
+new Person("Mark", "Muster"); //instanceof Person;
 
 --------------------------------
-
+Code completion with Javaoc
 --------------------------------
+    /**
+     * 
+     * @typedef PersonType
+     * @property { () => String } getName - the combinatin of firts and lastname as string
+     */
 
+    /**
+     * Constructor for a object of type {@link PersonType}
+     * @param { String } first 
+     * @param { String } last 
+     * @returns { PersonType }
+     */
+    function Person(first, last) {
+        let firstname = first;
+        let lastname  = last;
+        return {
+            // cannot use "this" as it is undefined
+            getName   : function() { return firstname + " "  + lastname }
+        }
+    }
 
---------------------------------
-
---------------------------------
 
 
 --------------------------------

@@ -49,4 +49,30 @@ function display() {
     progressfield.setAttribute("CLASS", "field progress");
 }
 
+const Player = name => {
+    let fallbackIndex = 0;
+    let progressIndex = 0;
+    return{
+        getFallbackIndex    : () => fallbackIndex,
+        getProgressIndex    : () => progressIndex,
+        proceed             : stride => progressIndex += stride,
+        turn                : () => fallbackIndex = progressIndex,
+        fallback            : () => progressIndex = fallbackIndex
+    } 
+}
+/** 
+function Player(name) {
+    let playerName = name; 
+    fallbackIndex = 0 // place to fall back on oopsie
+    progressIndex = 0 // place having been proceeding to
+    return {
+        proceed             : function(stride)  {progressIndex += stride},
+        fallback            : function()        {progressIndex = fallbackIndex},
+        turn                : function()        {fallbackIndex = progressIndex},
+        getFallbackIndex    : function()        {return fallbackIndex},
+        getProgressIndex    : function()        {return progressIndex},
+        getName             : function()        {return playerName}
+    }
+}
+*/
 player = Player("One");

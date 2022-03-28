@@ -10,23 +10,20 @@
         <p>JavaScript starts here:</p>
 
             <script>
+                const Person = ( () => {
+                    function Person(first, last) {
+                        this.firstname = first;
+                        this.lastname = last;
+                    }
+                    Person.prototype.getName = function() {
+                        return this.firstname + " " + this.lastname;
+                    };
+                    return Person;
+                }) (); // IIFE
 
-                const factor_ = 6;
-                const e = {revenue: 10000, bonus: null};
-                const bonusFormula = e => e.revenue * factor_;
-                
-                const bonusCalculation =  Function('employee', `return ${bonusFormula.value}`);
-               
+                const mark = new Person("Mark", "Muster");
 
-
-                bonusCalculation(e);
-            
-                document.writeln(e.bonus === e.revenue * factor_);
-
-
-
-
-
+                document.writeln("test " + mark.getName());
             </script>
 
     </body>
