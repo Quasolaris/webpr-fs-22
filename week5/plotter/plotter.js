@@ -8,13 +8,11 @@ function start() {
     const userFunction = document.getElementById('user_function');
     const canvas       = document.getElementById('canvas');
 
+    const makeF = () => Function("x", "return " + userFunction.value + ";");
 
-    const makeF = () => Function('x', `return ${userFunction.value};`);
-    userFunction.onchnage = _ => display(canvas, makeF());
-    
+    userFunction.onchange = _ =>  display(canvas, makeF());
+
     display(canvas, makeF());
-
-
 }
 
 function display(canvas, f) {
