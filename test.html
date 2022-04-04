@@ -10,19 +10,24 @@
         <p>JavaScript starts here:</p>
 
             <script>
-               const Person = name => {
-                   let age = 0;
-                   return {
-                       getAge : () => age,
-                       setAge: newAge => age = newAge,
-                       getName:() => name,
-                       setName: newName => name=newName
-                   }
-               }
+                /*
+                const inc    = x => x + 1;
+                const double = x => x * 2;
 
-               const me = Person("Myself");
-               me.setName("Sherlock");
-               document.writeln(me.getName() === "Sherlock");
+                Function.prototype.then = a => x => a(x);
+
+                document.writeln(inc.then(double).then(double) (1));  
+
+                document.writeln(add.then(mult).then(add) (1) === (1 + add_) * factor_ + add_);
+                */
+                //xs.eq(ys)
+                xs1 = [1,2,3,4,5];
+                ys2 = [1,2,3,4,5];
+                Array.prototype.eq = function(array) { 
+                     return ( {length: this}, (el, idx) => el === array[idx]);
+                }
+                document.write(xs1.eq(ys2));
+                //document.writeln(xs1_.eq(ys1_) && ! xs2_.eq(ys2_) && xs3_.eq(ys3_) && ! xs3_.eq(ys4_) && ! xs4_.eq(ys3_));
             </script>
 
     </body>

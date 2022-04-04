@@ -251,7 +251,7 @@ const Person = ( () => {
     return Person;
 }) (); // IIFE
 
-new Person("Mark", "Muster"); //instanceof Person;
+new Person("Mark", "Muster"); //instanceof Person
 
 --------------------------------
 Code completion with Javaoc
@@ -280,11 +280,62 @@ Code completion with Javaoc
 
 
 --------------------------------
+let y = {x: x};
+shortcut is {x}
+
+special notation if:
+y = {foo, function foo() {console.log{"in foo!"}}};
+// function instead of x
+shortcut:
+y = {foo(), {console.log{"in foo!"}}};
 
 --------------------------------
+Classes:
+
+class Person {
+    constructor(first, last) {
+        this.firstname = first;
+        this.lasname = last
+    }
+    getName() {
+        return this.firstname + " " + lastname
+    }
+}
+
+class Student extends Person {
+    constructor(first, last, grade) {
+        super(first, last);
+        this.grade = grad;
+    }
+}
+const s = new Student("Max", "Mustermann", 5.5);
+
+Functions are Objects, that have a prototype property, which means it references an object that:
+- has a name (~ type)
+- has a constructor
+- has itself a prototype
 
 
---------------------------------
+Prototyp-Chain
+const s = new Student();
+1. New empty object
+2. Construtor gets a prototype
+3. Through extneds keyword the prototype of Student will refere to prootype of Person
+4. The Person prototype referes to the prototype of Object
+
+s.firstname ===> no value in Student, it looks before returning undefined, if the prototype has firstname
+It finds firstname of Person, then it wants to get firstname, this is a property of the object (this property)
+It then goes to Object gets the firstname and returns it
+
+[[prototype]] // means reference to prototype
+
+Prototype is an object, so it can be extended or modified (also while runtime)
+Object.setPrototypeOf(obj, proto);
+
+JavaScript does not use types in the method dispatch
+
+
+
 
 --------------------------------
 
