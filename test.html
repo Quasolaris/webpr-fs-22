@@ -10,20 +10,19 @@
         <p>JavaScript starts here:</p>
 
             <script>
-                const Person = ( () => {
-                    function Person(first, last) {
-                        this.firstname = first;
-                        this.lastname = last;
-                    }
-                    Person.prototype.getName = function() {
-                        return this.firstname + " " + this.lastname;
-                    };
-                    return Person;
-                }) (); // IIFE
+               const Person = name => {
+                   let age = 0;
+                   return {
+                       getAge : () => age,
+                       setAge: newAge => age = newAge,
+                       getName:() => name,
+                       setName: newName => name=newName
+                   }
+               }
 
-                const mark = new Person("Mark", "Muster");
-
-                document.writeln("test " + mark.getName());
+               const me = Person("Myself");
+               me.setName("Sherlock");
+               document.writeln(me.getName() === "Sherlock");
             </script>
 
     </body>
