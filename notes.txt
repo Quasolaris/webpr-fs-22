@@ -334,15 +334,15 @@ Object.setPrototypeOf(obj, proto);
 
 JavaScript does not use types in the method dispatch
 
+--------------------------------
 
-
+console.log({x: y}) =====> prints: {x:1, y:2}
+foo = ({x, y}) => console.log(x, y);
 
 --------------------------------
 
-
 --------------------------------
-
---------------------------------
+==============Moves=============
 
 
 --------------------------------

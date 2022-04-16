@@ -2,7 +2,36 @@
 
 // find a solution for suite, test, assert
 
+const Assert = () => {
+    const ok = [];
+    return {
+        is    : (a, b, message) => {
+            if (a === b) {
+                ok.push(true);
+            } else {
+                // this would start the debugger in the browser when reachign this point
+                // debugger
+                if(message) {
+                    console.log(message);
+                }
+                console.log("Tests failed, expected: " + a + " but got " + b);
+                ok.push(false);
+            }
+        },
+        getOk : () => ok
+    }
+}
 
+const test = (origin, callback) => {
+    // make boolean array ok
+    const assert = Assert();
+
+    // push boolean sinto ok
+    callback(assert);
+
+    // reporting the result
+    report(origin, assert.getOk());
+}
 
 // test result report
 // report :: String, [Bool] -> DOM ()

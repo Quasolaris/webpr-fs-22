@@ -10,52 +10,74 @@
         <p>JavaScript starts here:</p>
 
             <script>
-                
+                /*
                 const inc    = x => x + 1;
                 const double = x => x * 2;
 
-                Function.prototype.then = (fun, x) => { 
-                    return fun((x));
+                Function.prototype.then =  fun => x => {
+                    console.log(this.result);
+                    return fun(x);
                 }
                 
+                Function.constructor.result = this(this.x);
 
-                document.writeln(inc.then(double) (2));  
+
+                document.writeln(inc.then(double) (5));  
 
                 const add = x => 5 + x;
                 const mult = x => 10 * x;
                 let add_ = 5;
                 let factor_ = 10;
-                document.writeln(add.then(mult).then(add) (1) === (1 + add_) * factor_ + add_);
-                
-                //xs.eq(ys)
-    
-
-                // Lösung 1
-                /*
-
-                xs1 = [1,2,3,4,5,6];
-                ys2 = [1,2,3,4,5,6];
-                ys3 = [1,3,4,5,3];
 
 
+                -------------------------------
+                Provide a function 'failSafe' that - in curried style - takes
+                - a default value
+                - a callback function
+                - an argument to the callback function
+                that returns whatever the callback function returns given its argument
+                or the default value if the callback function throws an Error.
 
-                Array.prototype.eq = function(array) { 
-                    if(this.length !== array.length) {
-                         return false;
-                     } else {
-                        for(let i = 0; i < this.length; i++){
-                         if (this[i] !== array[i]) {
-                             return false;
-                         }
-                     }
-                        return true;
-                    }
+                Note: see how the tests make use of failSafe.
+
+
+
+                 Your solution will be tested against:
+
+                const doError    = x => { throw new Error() };
+                const errorCount = failSafe (1) (doError);
+
+                                function doError(arg) {
+                    throw "Error";
                 }
+            
+                function errorCount(arg) {
+                    return 1;
+                }
+                document.writeln(failSafe (false) (x=>x) (true));
+                document.writeln(failSafe (3) (doError) (null));
 
-                document.writeln(xs1.eq(ys2));
-                document.writeln(xs1.eq(ys3));
-                //document.writeln(xs1_.eq(ys1_) && ! xs2_.eq(ys2_) && xs3_.eq(ys3_) && ! xs3_.eq(ys4_) && ! xs4_.eq(ys3_));
+                failSafe (false) (x=>x) (true) && failSafe (true) (doError) (null) && errorCount(null) === 1;
+
                 */
+
+                // =====================Q18a===========================
+                const failSafe = defVal => callback => arg => {
+                    try {
+                        return callback(arg)
+                    } catch (err) {
+                        return defVal;
+                    }
+                }   
+                // ================================================
+
+                const doError    = x => { throw new Error() };
+                const errorCount = failSafe (1) (doError);
+                document.writeln(failSafe (false) (x=>x) (true) && failSafe (true) (doError) (null) && errorCount(null) === 1);
+
+
+               
+
             </script>
 
     </body>
