@@ -9,12 +9,10 @@ const Assert = () => {
             if (a === b) {
                 ok.push(true);
             } else {
-                // this would start the debugger in the browser when reachign this point
-                // debugger
-                if(message) {
+                if (message) {
                     console.log(message);
                 }
-                console.log("Tests failed, expected: " + a + " but got " + b);
+                console.error("test failed! expected:" + a + " but got " + b);
                 ok.push(false);
             }
         },
@@ -23,15 +21,15 @@ const Assert = () => {
 }
 
 const test = (origin, callback) => {
-    // make boolean array ok
+    // make the ok array
     const assert = Assert();
-
-    // push boolean sinto ok
+    // pushed booleans into the array
     callback(assert);
-
     // reporting the result
     report(origin, assert.getOk());
 }
+
+
 
 // test result report
 // report :: String, [Bool] -> DOM ()
