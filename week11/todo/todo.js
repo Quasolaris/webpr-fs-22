@@ -3,12 +3,15 @@
 const TodoController = () => {
 
     const Todo = () => {                                // facade
-        const textAttr = Observable("text");            // we current don't expose it as we don't use it elsewhere
+        const textAttr = Observable("...");            // we current don't expose it as we don't use it elsewhere
         const doneAttr = Observable(false);
         return {
             getDone:       doneAttr.getValue,
             setDone:       doneAttr.setValue,
             onDoneChanged: doneAttr.onChange,
+            setText:       textAttr.setValue,
+            getText:       textAttr.getValue,
+            onTextChanged: textAttr.onChange,
         }
     };
 
@@ -19,14 +22,34 @@ const TodoController = () => {
         todoModel.add(newTodo);
         return newTodo;
     };
+   const scheduler = Scheduler();
+    const addFortuneTodo = button => {
+        button.disabled = true;
+        const newTodo = Todo();
+        todoModel.add(newTodo);
+        newTodo.setText("...");
+
+       scheduler.add( ok => {
+            fortuneService( text => {
+                newTodo.setText(text);
+                button.disabled = false;
+                ok();
+            });
+       });
+
+
+        return newTodo;
+    };
 
     return {
         numberOfTodos:      todoModel.count,
         numberOfopenTasks:  () => todoModel.countIf( todo => ! todo.getDone() ),
         addTodo:            addTodo,
+        addFortuneTodo:     addFortuneTodo,
         removeTodo:         todoModel.del,
         onTodoAdd:          todoModel.onAdd,
         onTodoRemove:       todoModel.onDel,
+        removeTodoRemoveListener: todoModel.removeDeleteListener, // only for the test case, not used below
     }
 };
 
@@ -41,7 +64,7 @@ const TodoItemsView = (todoController, rootElement) => {
             const template = document.createElement('DIV'); // only for parsing
             template.innerHTML = `
                 <button class="delete">&times;</button>
-                <input type="text" size="42">
+                <input type="text" size="36">
                 <input type="checkbox">            
             `;
             return template.children;
@@ -51,12 +74,15 @@ const TodoItemsView = (todoController, rootElement) => {
         checkboxElement.onclick = _ => todo.setDone(checkboxElement.checked);
         deleteButton.onclick    = _ => todoController.removeTodo(todo);
 
-        todoController.onTodoRemove( removedTodo => {
-            if (removedTodo !== todo) return; // guard clause
+        todoController.onTodoRemove( (removedTodo, removeMe) => {
+            if (removedTodo !== todo) return;
             rootElement.removeChild(inputElement);
             rootElement.removeChild(deleteButton);
             rootElement.removeChild(checkboxElement);
+            removeMe();
         } );
+
+        todo.onTextChanged( _ => inputElement.value = todo.getText() );
 
         rootElement.appendChild(deleteButton);
         rootElement.appendChild(inputElement);
