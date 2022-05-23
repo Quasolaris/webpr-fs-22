@@ -37,7 +37,7 @@ const Assert = () => {
 /**
  * providing a scope and name for a test callback that takes a value of type {@link Assert}
  * and side-effects the assert to capture the test results.
- * Then it creates the report for this assert.
+ * P it creates the report for this assert.
  * @param {string} origin, the name to be reported as the origin of the reported tests
  * @param {function(Assert): *} callback
  */

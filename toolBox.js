@@ -103,7 +103,96 @@ document.writeln('<script>alert("What a joke");<\/script>');
 Function('x', `return ${userFunction.value}`)
 
 //-------------------------------------------
+// Objects
+const good = {
+    firstname: "Good",
+    lastname: "Boy",
+    getName : function() {
+        return this.firstname + " "+ this.lastname
+    }
+};
 
+// Closed explicit class, closed sope so no "this"
+function Person(firts, last) {
+    let firstname: first;
+    let lastname : last;
+    return {
+        getName: function() {
+            return firstname + " " + lasname 
+            }
+        }
+    }
+//-------------------------------------------
+//Mixed but classifed class
+
+const Person = ( () => {
+    function Person(first, last) {
+        this.firstname = first;
+        this.lastname = last;
+    }
+    Person.prototype.getName = function() {
+        return this.firstname + " " + this.lastname;
+    };
+    return Person;
+}) (); // IIFE
+
+new Person("Mark", "Muster"); //instanceof Person
+
+//-------------------------------------------
+// Code completion with Javaoc
+    /**
+     * 
+     * @typedef PersonType
+     * @property { () => String } getName - the combinatin of firts and lastname as string
+     */
+
+    /**
+     * Constructor for a object of type {@link PersonType}
+     * @param { String } first 
+     * @param { String } last 
+     * @returns { PersonType }
+     */
+    function Person(first, last) {
+        let firstname = first;
+        let lastname  = last;
+        return {
+            // cannot use "this" as it is undefined
+            getName   : function() { return firstname + " "  + lastname }
+        }
+    }
+
+//-------------------------------------------
+// Scheduler
+const Scheduler = () => {
+    let inProcess = false;
+    const tasks = [];
+    function process() {
+        if (inProcess) { return; }
+        if (tasks.length === 0) { return; } // guard clause
+        inProcess = true;
+        const task = tasks.pop();
+
+        let wasOk = false;
+        const ok = () => wasOk = true;
+        const doit = new Promise( (resolve, reject) => {
+            task(resolve);
+        }). then ( () => {
+            inProcess = false;
+            process();
+        });
+    }
+    function add(task) {
+        tasks.unshift(task);
+        process();
+    }
+    return {
+        add: add,
+        addOk: task => add( ok => { task(); ok(); }) // convenience
+    }
+};
+
+//-------------------------------------------
+USE MODULES FOR TOOL KIT
 
 //-------------------------------------------
 
@@ -115,6 +204,26 @@ Function('x', `return ${userFunction.value}`)
 
 
 //-------------------------------------------
+
+
+//-------------------------------------------
+
+
+
+//-------------------------------------------
+
+
+
+//-------------------------------------------
+
+
+
+//-------------------------------------------
+
+
+
+//-------------------------------------------
+
 
 
 //-------------------------------------------

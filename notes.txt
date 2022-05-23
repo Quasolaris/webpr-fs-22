@@ -342,7 +342,30 @@ foo = ({x, y}) => console.log(x, y);
 --------------------------------
 
 --------------------------------
-==============Moves=============
+==============Modules=============
+<script="c,js"> bad, dependencies, order etc. makes problem
+
+Boardr of file differnece in loading: 
+depens on TCP/IP, when smaller than TCP/IP rest of package gets filled, bigger gets chopped up. SO everything that is smaller, wastes space. Usally 4Kbytes, per TCP/IP package. Delivery size smaller than package size is optimal.
+
+Editing code, better in Modules.
+Delevery better one big chunck.
+
+Modules are NOT projects.
+
+A module is any code that uses "import" or "export", so even cod eimports or exports code modules.
+import("./my.js").then(mod => ...) is a function (use URI) returns promise, therefor .then() possible. mod is a namespace (actually a module)
+
+import "module"; imports at most once
+
+brackets are object deconstructions
+import {export1, export2} from "module-name" // best way, is very explicit what exports are used in code
+
+when you import/export code automatically becomes a module
+
+export{ name1, name2, ..., nameN} // best way
+
+strict-mode = then no longer allowed to use global variable. So when you forget let infornt of variable, error occures. All exported variable are READ-ONLY.
 
 
 --------------------------------
