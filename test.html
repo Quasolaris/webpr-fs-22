@@ -65,25 +65,28 @@
                     t = str2chars(i.toLowerCase())
                     f = []
                     t.forEach((i) => {
-                        if(isAlpha(i) !== null) {
-                            f.push(i);
-                        }});
+                        if(isAlpha(i) !== null) f.push(i);});
                     l = f.length;
-                    f.forEach((e, i) => {
-                        if(f[i] !== f[l-i-1]) {
-                            return false;
-                        }
-                    });
-                    return true;
+                    for(let i = l-1; i >= 0; i--) {
+                        if(f[i] !== f[l-i-1]) return false;
+                    }
+                    return true
                 }
-                console.log("Why:" + isAlpha("a"))
-                document.write(palindrome('ABBA'))  // true
-                
-                document.write(palindrome('Abba'))  // true
-                
-                document.write(palindrome('A man, a plan, a canal: Panama!')) // true
 
-                document.writeln(palindrome("Amore, Roma!") && palindrome("Madam, I'm Adam!") && palindrome("Never odd or even.") && ! palindrome("Amore"))
+                document.writeln("false | true | true | false | true | true | false | ---->")
+                document.write(palindrome('ABBAA') + " | ")  // false
+                
+                document.write(palindrome('Abba')+ " | ")  // true
+
+                document.write(palindrome('Abbbba')+ " | ")  // true
+
+                document.write(palindrome('Abbaoz')+ " | ")  // false
+                
+                document.write(palindrome('A man, a plan, a canal: Panama!')+ " | ") // true
+
+                document.writeln(palindrome("Amore, Roma!") && palindrome("Madam, I'm Adam!") && palindrome("Never odd or even.") && ! palindrome("Amore")+ " | ") // true
+
+                document.writeln(palindrome("Amore, Roma!") && palindrome("Madam, I'm Adam!") && palindrome("Never odd or even.") && palindrome("Amore")+ " | ") // false
                
 
 
