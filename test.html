@@ -51,44 +51,81 @@
                 .then( x => null)         // jump over rest
                 .then( x => x.mustNotBeCalled) !== null && y_ === x_ * 2 + 1
                 */
-                
-                //Implement a function named 'palindrome' that tells whether a given string
-                //is the same when read left-to-right and right-to-left, ignoring upper/lowercase differences
-                //and any characters outside 'a' to 'z'. For example
-               
 
-                //You must use the following helper functions (they are provided):
-                const str2chars = str  => [...str];            // convert a string to an array of chars
-                const isAlpha   = char => char.match(/[a-z]/); // char is in the alphabet
 
-                function palindrome(i) {
-                    t = str2chars(i.toLowerCase())
-                    f = []
-                    t.forEach((i) => {
-                        if(isAlpha(i) !== null) f.push(i);});
-                    l = f.length;
-                    for(let i = l-1; i >= 0; i--) {
-                        if(f[i] !== f[l-i-1]) return false;
-                    }
-                    return true
+                /*
+                Q16a:
+
+                JavaScript is functional and functional languages should provide function composition.
+                Let's assume we have functions like
+                const inc    = x => x + 1;
+                const double = x => x * 2;
+                Provide a general function 'then' that can combine _any_ such functions such that
+                inc.then(double).then(double)
+                can be used like
+                inc.then(double).then(double) (1) === 8  
+
+                Note: you cannot assume what the functions are actually doing. 
+                It must work for all functions!
+
+                MAX 512 CHARS
+
+                TEST:_
+                add.then(mult).then(add) (1) === (1 + add_) * factor_ + add_
+
+                */
+                document.writeln("Then: ");
+                const inc    = x => x + 1;
+                const double = x => x * 2;
+
+                const add = x => 5 + x;
+                const mult = x => 10 * x;
+                let add_ = 5;
+                let factor_ = 10;
+
+                Function.prototype.then =  fun => {
+                    
+
                 }
 
-                document.writeln("false | true | true | false | true | true | false | ---->")
-                document.write(palindrome('ABBAA') + " | ")  // false
+                document.writeln(add.then(mult).then(add) (1) === (1 + add_) * factor_ + add_);
+
+                /*
+                Q24a
+                *Copy* the following code into the edit area and fill the ___ gaps.
+
+                const NullSafe = x => {
+                    const isNullSafe = y => y && y.then;
+                    const maywrap    = y => ___ ; // if y is not NullSafe yet, make it so
+                    return {
+                    then: fn => ___ // see(1)
+                    }
+                };
+
+                (1) if x is not null or undefined, call fn(x); either way, make sure the result is a NullSafe 
+
+                Fill the gaps such that NullSafe objects can be chained with their "then" function
+                just like Promises do, incl. auto-promotion of result values to NullSafe objects.
+
+                NullSafe(1).then(console.log);                   // will call the log
+                NullSafe(null).then(console.log);                // will not call the log
+                NullSafe(2).then( x => null).then(console.log);  // will not call the log
+                MAX 512 CHARS
+
+                TEST:
+                // x_ and y_ are given. do not override.                                    
+                NullSafe(x_)
+                .then( x => x*2)          // must auto-promote
+                .then( x => NullSafe(x))  // must not auto-promote
+                .then( x => y_ = x + 1)   // store value, check no double promotion
+                .then( x => null)         // jump over rest
+                .then( x => x.mustNotBeCalled) !== null && y_ === x_ * 2 + 1
+
+
+                */
+             
+
                 
-                document.write(palindrome('Abba')+ " | ")  // true
-
-                document.write(palindrome('Abbbba')+ " | ")  // true
-
-                document.write(palindrome('Abbaoz')+ " | ")  // false
-                
-                document.write(palindrome('A man, a plan, a canal: Panama!')+ " | ") // true
-
-                document.writeln(palindrome("Amore, Roma!") && palindrome("Madam, I'm Adam!") && palindrome("Never odd or even.") && ! palindrome("Amore")+ " | ") // true
-
-                document.writeln(palindrome("Amore, Roma!") && palindrome("Madam, I'm Adam!") && palindrome("Never odd or even.") && palindrome("Amore")+ " | ") // false
-               
-
 
 
             </script>
