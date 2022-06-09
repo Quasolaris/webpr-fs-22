@@ -83,12 +83,13 @@
                 let add_ = 5;
                 let factor_ = 10;
 
-                Function.prototype.then =  fun => {
-                    
-
+                Function.prototype.then = fun  => fun2 => x => {
+                    return fun(fun2(x));
                 }
 
                 document.writeln(add.then(mult).then(add) (1) === (1 + add_) * factor_ + add_);
+
+                document.writeln(add.then(mult).then(add) (1));
 
                 /*
                 Q24a
